@@ -1,0 +1,55 @@
+﻿<Page
+    x:Class="FedoraBug.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FedoraBug"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <local:StringToGridLengthConverter x:Key="StringToGridLengthConverter" />
+    </Page.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="{x:Bind BottomOffset.Text, Mode=OneWay, Converter={StaticResource StringToGridLengthConverter}}" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="{x:Bind RightOffset.Text, Mode=OneWay, Converter={StaticResource StringToGridLengthConverter}}" />
+        </Grid.ColumnDefinitions>
+
+        <Button Content="Left Top" Height="60" Grid.Row="0" Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Stretch" />
+        <Button Content="Left Buttom" Height="60" Grid.Row="2" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" />
+        <Button Content="Right Top" Height="60" Grid.Row="0" Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Stretch" />
+        <Button Content="Right Buttom" Height="60" Grid.Row="2" Grid.Column="2" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" />
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Right offset" Margin="8,0,8,0" VerticalAlignment="Center" />
+            <TextBox Grid.Column="1" x:Name="RightOffset" Text="0" Margin="0,0,8,0" />
+
+            <TextBlock Grid.Row="1" Text="Bottom offset" Margin="8,0,8,0" VerticalAlignment="Center" />
+            <TextBox Grid.Row="1" Grid.Column="1" x:Name="BottomOffset" Text="0" Margin="0,0,8,0" />
+
+        </Grid>
+
+        <Rectangle Grid.RowSpan="4" Grid.Column="3" Fill="Red" />
+        <Rectangle Grid.Row="3" Grid.ColumnSpan="4" Fill="Red" />
+    </Grid>
+</Page>
